@@ -1,0 +1,853 @@
+/* ============================================================
+   VARIÁVEIS / LAYOUT
+============================================================ */
+:root {
+  --layout-max-width: 1200px;
+}
+
+.layout-shell {
+  max-width: var(--layout-max-width);
+}
+
+/* ============================================================
+   BASE
+============================================================ */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Aurelian Noir — headline */
+.title-font {
+  font-family: "Noto Serif", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+}
+
+/* Aurelian Noir — body / UI */
+.ui-font {
+  font-family: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.label-font {
+  font-family: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 500;
+}
+
+[data-lucide] {
+  stroke-width: 1.35;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+/* Tamanho visual da logo — ajuste APENAS --logo-scale:
+   1.0 = original | 1.3 = discreto | 1.5 = atual | 1.8 = grande | 2.0 = dobro
+   O header usa overflow:hidden então valores > 1.5 serão cortados pelas bordas */
+.logo-img {
+  transform: scale(var(--logo-scale));
+  transform-origin: left center;
+  /* margens negativas compensam o espaço extra causado pelo scale */
+  margin-top: -14px;
+  margin-bottom: -12px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.55));
+}
+
+.header-glow {
+  /* overflow:hidden contém o logo dentro do header sem cortar o box-shadow */
+  overflow: hidden;
+  box-shadow:
+    0 3px 22px rgba(212, 175, 55, 0.123);
+}
+
+/* ============================================================
+   DASHBOARD SHELL
+============================================================ */
+.dashboard-shell {
+  background: #171616;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 30px;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.avatar-ring {
+  box-shadow: 0 0 0 3px #d4af37, 0 10px 36px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Nav tiles ── */
+.nav-tile {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.32);
+  transition: transform 0.22s ease, border-color 0.22s ease,
+    box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.nav-tile:hover {
+  background: #272727;
+  border-color: rgba(212, 175, 55, 0.38);
+  box-shadow:
+    0 16px 44px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(212, 175, 55, 0.1);
+  transform: translateY(-3px);
+}
+
+.nav-tile--active {
+  background: linear-gradient(155deg, #f2e09e 0%, #d4af37 42%, #9a7928 100%);
+  border: 1px solid rgba(245, 230, 190, 0.3);
+  border-radius: 22px;
+  box-shadow:
+    0 18px 50px rgba(212, 175, 55, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.nav-tile--active:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 22px 56px rgba(212, 175, 55, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset;
+}
+
+.nav-icon-circle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.nav-icon-circle--on-gold {
+  background: rgba(0, 0, 0, 0.72);
+  color: #d4af37;
+}
+
+.nav-icon-circle--muted {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  color: #d4af37;
+}
+
+/* ── Divider / quote ── */
+.quote-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent
+  );
+}
+
+/* ============================================================
+   CURATED PANEL
+============================================================ */
+.curated-panel {
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #121212;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+.curated-photo {
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.curated-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.6) 0%,
+    rgba(10, 10, 10, 0.12) 38%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+
+.stats-divider {
+  width: 1px;
+  align-self: stretch;
+  min-height: 2.75rem;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+/* Overlay com blur */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(5, 5, 5, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  /* SEM transition — entrada/saída controladas por @keyframes abaixo */
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Ambas as classes são aplicadas ao mesmo tempo que as do card */
+.modal-overlay.overlay-entering {
+  animation: overlay-in 0.3s ease forwards;
+}
+
+.modal-overlay.overlay-leaving {
+  visibility: visible;
+  pointer-events: none;
+  animation: overlay-out 0.26s ease-in forwards;
+}
+
+/* Card do modal */
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #161616;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 26px;
+  padding: 2rem 2rem 2.25rem;
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+/* Animação de entrada */
+@keyframes modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animação de saída */
+@keyframes modal-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-22px) scale(0.97);
+  }
+}
+
+.modal-card.modal-entering {
+  animation: modal-slide-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.modal-card.modal-leaving {
+  animation: modal-slide-out 0.26s ease-in forwards;
+}
+
+/* Botão fechar */
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.45);
+  transition: background 0.18s, color 0.18s;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Tabs */
+.modal-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.55rem 0.5rem;
+  font-size: 0.68rem;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.35);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.18s, border-color 0.18s;
+}
+
+.tab-btn.active {
+  color: #d4af37;
+  border-bottom-color: #d4af37;
+}
+
+.tab-btn:hover:not(.active) {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Campo do formulário */
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.modal-label {
+  font-size: 0.62rem;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #d4af37;
+}
+
+.modal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: Manrope, sans-serif;
+  font-size: 0.875rem;
+  padding: 0.45rem 0 0.55rem;
+  outline: none;
+  transition: border-color 0.18s;
+}
+
+.modal-input::placeholder {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.modal-input:focus {
+  border-bottom-color: #d4af37;
+}
+
+/* Botão olho (senha) */
+.eye-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0.45rem;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.18s;
+  display: grid;
+  place-items: center;
+}
+
+.eye-btn:hover {
+  color: #d4af37;
+}
+
+/* Botão submit */
+.modal-submit {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e8c84a 0%, #d4af37 50%, #a8892a 100%);
+  color: #0a0a0a;
+  font-family: Manrope, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  box-shadow: 0 8px 28px rgba(212, 175, 55, 0.28);
+  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+
+.modal-submit:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 34px rgba(212, 175, 55, 0.34);
+}
+
+.modal-submit:active {
+  transform: translateY(0);
+  opacity: 0.85;
+}
+
+/* ============================================================
+   PÁGINA DE SERVIÇOS — Cards
+============================================================ */
+.service-card {
+  background: #171616;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.18);
+}
+
+.service-card-photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  flex-shrink: 0;
+}
+
+.service-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.45s ease;
+}
+
+.service-card:hover .service-card-photo img {
+  transform: scale(1.06);
+}
+
+.service-card-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28, 28, 28, 0.55) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Botão de agendamento dentro do card */
+.service-btn {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e8c84a 0%, #d4af37 50%, #a8892a 100%);
+  color: #0a0a0a;
+  font-family: Manrope, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.22);
+  transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+
+.service-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(212, 175, 55, 0.34);
+}
+
+.service-btn:active {
+  transform: translateY(0);
+  opacity: 0.82;
+}
+
+/* ============================================================
+   PÁGINA DE SERVIÇOS — Filtro de categorias
+============================================================ */
+.category-pill {
+  padding: 0.48rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: Manrope, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  transition: background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.category-pill:hover:not(.active) {
+  border-color: rgba(212, 175, 55, 0.3);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.category-pill.active {
+  background: linear-gradient(135deg, #e8c84a 0%, #d4af37 60%, #a8892a 100%);
+  border-color: transparent;
+  color: #0a0a0a;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.3);
+}
+
+/* ============================================================
+   PÁGINA DE AGENDAMENTOS
+============================================================ */
+
+/* ── Card ── */
+.appt-card {
+  display: flex;
+  flex-direction: column;
+  background: #171616;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color 0.26s ease, box-shadow 0.26s ease;
+}
+
+@media (min-width: 640px) {
+  .appt-card { flex-direction: row; }
+}
+
+.appt-card:hover {
+  border-color: rgba(212, 175, 55, 0.18);
+  box-shadow:
+    0 20px 56px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(212, 175, 55, 0.06) inset;
+}
+
+/* Passado / Concluído */
+.appt-card--past {
+  background: #171616;
+}
+
+/* ── Thumbnail ── */
+.appt-thumb {
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .appt-thumb {
+    width: 11rem;
+    aspect-ratio: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .appt-thumb { width: 13rem; }
+}
+
+.appt-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+.appt-card:hover .appt-thumb img {
+  transform: scale(1.04);
+}
+
+.appt-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(24, 24, 24, 0.25) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .appt-thumb-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(24, 24, 24, 0.65) 0%,
+      transparent 55%
+    );
+  }
+}
+
+/* ── Ponto de status ── */
+.appt-status-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.appt-status-dot--confirmed {
+  background: #d4af37;
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+}
+
+.appt-status-dot--done {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Badge ── */
+.appt-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  font-family: Manrope, sans-serif;
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.appt-badge--confirmed {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: #d4af37;
+}
+
+.appt-badge--done {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Pílula de preço ── */
+.appt-price-pill {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 9999px;
+  background: rgba(212, 175, 55, 0.09);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: #d4af37;
+  font-family: Manrope, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.appt-price-pill--muted {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Ícone de info ── */
+.appt-icon-wrap {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border-radius: 9px;
+  background: rgba(212, 175, 55, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  color: #d4af37;
+}
+
+/* ── Botões de ação ── */
+.appt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 10px;
+  font-family: Manrope, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+
+.appt-btn--reschedule {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.appt-btn--reschedule:hover {
+  border-color: rgba(212, 175, 55, 0.38);
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.appt-btn--cancel {
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.25);
+  background: transparent;
+}
+
+.appt-btn--cancel:hover {
+  border-color: rgba(200, 55, 55, 0.35);
+  color: rgba(210, 85, 85, 0.95);
+  background: rgba(200, 50, 50, 0.07);
+}
+
+/* ── Estado vazio ── */
+.appt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+/* ============================================================
+   MODAL DE AGENDAMENTO
+============================================================ */
+.booking-card {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background: #161616;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 26px;
+  padding: 2rem 2rem 2.25rem;
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  max-height: 92dvh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.booking-card::-webkit-scrollbar { display: none; }
+
+/* Botões de navegação do calendário */
+.cal-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.45);
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.cal-nav-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+}
+
+/* Cabeçalhos dos dias da semana */
+.cal-weekday {
+  font-size: 0.58rem;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #808080;
+  text-align: center;
+  padding-bottom: 0.45rem;
+}
+
+/* Células de dia */
+.cal-day {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  font-family: Manrope, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s, color 0.16s;
+  line-height: 1;
+}
+.cal-day--empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+.cal-day--past {
+  color: rgba(255, 255, 255, 0.18);
+  cursor: not-allowed;
+}
+.cal-day--today {
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #d4af37;
+}
+.cal-day--selected {
+  background: linear-gradient(135deg, #e8c84a 0%, #d4af37 55%, #a8892a 100%);
+  border-color: transparent;
+  color: #0a0a0a;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.38);
+}
+.cal-day:hover:not(:disabled):not(.cal-day--selected):not(.cal-day--past) {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.28);
+  color: #d4af37;
+}
+
+/* Slots de horário */
+.time-slot {
+  padding: 0.55rem 0.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: Manrope, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s, color 0.16s, box-shadow 0.16s;
+}
+.time-slot:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #d4af37;
+}
+.time-slot--selected {
+  background: linear-gradient(135deg, #e8c84a 0%, #d4af37 55%, #a8892a 100%);
+  border-color: transparent;
+  color: #0a0a0a;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.32);
+}
+.time-slot--disabled,
+.time-slot:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+/* Resumo do serviço */
+.booking-summary {
+  background: rgba(212, 175, 55, 0.045);
+  border: 1px solid rgba(212, 175, 55, 0.14);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+}

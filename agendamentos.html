@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agendamentos — Studio Elegance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./src/site-setup.js"></script>
+  </head>
+  <body class="ui-font min-h-screen bg-ink text-white antialiased">
+
+    <!-- Radial background glow -->
+    <div class="pointer-events-none fixed inset-0" aria-hidden="true">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_1100px_560px_at_50%_-8%,rgba(212,175,55,0.06),transparent_58%)]"></div>
+    </div>
+
+    <!-- Injetado por components.js -->
+    <div id="modal-root"></div>
+    <div id="header-root"></div>
+    <div id="booking-root"></div>
+
+    <!-- ============================================================
+         MAIN
+    ============================================================ -->
+    <main class="layout-shell relative z-10 mx-auto w-full px-4 pb-20 sm:px-6 md:px-8 lg:px-10">
+
+      <!-- ── Hero ── -->
+      <section class="mt-10 sm:mt-14">
+
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-[0.68rem] tracking-[0.16em] text-label">
+          <a href="./index.html"
+            class="flex items-center gap-1.5 transition-colors hover:text-gold/80">
+            <i data-lucide="home" class="h-3 w-3"></i>
+            Início
+          </a>
+          <i data-lucide="chevron-right" class="h-3 w-3 opacity-40"></i>
+          <span class="text-gold/70">Agendamentos</span>
+        </nav>
+
+        <!-- Título + meta -->
+        <div class="mt-5 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 class="title-font text-[2rem] leading-tight text-white sm:text-[2.6rem] sm:leading-[1.1]">
+              Meus <span class="text-gold">Agendamentos</span>
+            </h1>
+            <p class="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-[0.95rem]">
+              Gerencie suas próximas experiências de beleza com praticidade e elegância.
+            </p>
+          </div>
+
+          <!-- Totalizadores -->
+          <div class="flex items-center gap-5 shrink-0">
+            <div class="text-center">
+              <p id="count-proximos" class="title-font text-2xl text-gold">2</p>
+              <p class="mt-0.5 text-[0.6rem] tracking-[0.16em] text-label">PRÓXIMOS</p>
+            </div>
+            <div class="h-8 w-px bg-white/8"></div>
+            <div class="text-center">
+              <p id="count-historico" class="title-font text-2xl text-white/40">1</p>
+              <p class="mt-0.5 text-[0.6rem] tracking-[0.16em] text-label">HISTÓRICO</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mt-7 flex items-center gap-2.5">
+          <button class="category-pill active" data-tab="proximos">Próximos</button>
+          <button class="category-pill" data-tab="historico">Histórico</button>
+        </div>
+
+        <p id="appt-label" class="mt-5 text-[0.7rem] tracking-[0.18em] text-label">
+          2 AGENDAMENTOS ATIVOS
+        </p>
+      </section>
+
+      <!-- ── Lista de agendamentos ── -->
+      <section class="mt-6 sm:mt-8">
+        <div id="appt-list" class="flex flex-col gap-5">
+
+          <!-- ───────────────────────────────
+               PRÓXIMOS
+          ─────────────────────────────── -->
+
+          <!-- Card 1 -->
+          <article class="appt-card" data-tab="proximos">
+            <!-- Imagem -->
+            <div class="appt-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=500&q=80"
+                alt="Corte Feminino"
+                loading="lazy" decoding="async"
+              />
+              <!-- Overlay gradiente na imagem -->
+              <div class="appt-thumb-overlay"></div>
+            </div>
+
+            <!-- Conteúdo -->
+            <div class="flex flex-1 flex-col gap-0 min-w-0">
+
+              <!-- Topo: nome + preço -->
+              <div class="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="appt-status-dot appt-status-dot--confirmed"></span>
+                    <span class="appt-badge appt-badge--confirmed">CONFIRMADO</span>
+                  </div>
+                  <h3 class="title-font text-[1.15rem] leading-snug text-white">
+                    Corte Feminino
+                  </h3>
+                  <p class="mt-1 text-[0.68rem] font-semibold tracking-[0.2em] text-gold/75">
+                    COM ISABELA CARVALHO
+                  </p>
+                </div>
+                <div class="shrink-0 mt-0.5">
+                  <span class="appt-price-pill">R$ 160</span>
+                </div>
+              </div>
+
+              <!-- Divisor -->
+              <div class="mx-6 h-px bg-white/[0.05]"></div>
+
+              <!-- Data + Horário + Duração -->
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-3 px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DATA</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">25 de Maio, 2026</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="clock" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">HORÁRIO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">14:30</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="timer" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DURAÇÃO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">45 min</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Divisor -->
+              <div class="mx-6 h-px bg-white/[0.05]"></div>
+
+              <!-- Ações -->
+              <div class="flex items-center gap-3 px-6 py-4">
+                <button class="appt-btn appt-btn--reschedule"
+                  data-reagendar
+                  data-name="Corte Feminino"
+                  data-price="R$ 160"
+                  data-duration="45 min">
+                  <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i>
+                  REAGENDAR
+                </button>
+                <button class="appt-btn appt-btn--cancel" data-action="cancel">
+                  <i data-lucide="x" class="h-3.5 w-3.5"></i>
+                  CANCELAR
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="appt-card" data-tab="proximos">
+            <div class="appt-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=500&q=80"
+                alt="Coloração Premium"
+                loading="lazy" decoding="async"
+              />
+              <div class="appt-thumb-overlay"></div>
+            </div>
+
+            <div class="flex flex-1 flex-col gap-0 min-w-0">
+              <div class="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="appt-status-dot appt-status-dot--confirmed"></span>
+                    <span class="appt-badge appt-badge--confirmed">CONFIRMADO</span>
+                  </div>
+                  <h3 class="title-font text-[1.15rem] leading-snug text-white">
+                    Coloração Premium
+                  </h3>
+                  <p class="mt-1 text-[0.68rem] font-semibold tracking-[0.2em] text-gold/75">
+                    COM HELENA ROSSI
+                  </p>
+                </div>
+                <div class="shrink-0 mt-0.5">
+                  <span class="appt-price-pill">R$ 480</span>
+                </div>
+              </div>
+
+              <div class="mx-6 h-px bg-white/[0.05]"></div>
+
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-3 px-6 py-4">
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DATA</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">03 de Junho, 2026</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="clock" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">HORÁRIO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">10:00</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="timer" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DURAÇÃO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">3 h</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mx-6 h-px bg-white/[0.05]"></div>
+
+              <div class="flex items-center gap-3 px-6 py-4">
+                <button class="appt-btn appt-btn--reschedule"
+                  data-reagendar
+                  data-name="Coloração Premium"
+                  data-price="R$ 480"
+                  data-duration="3 h">
+                  <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i>
+                  REAGENDAR
+                </button>
+                <button class="appt-btn appt-btn--cancel" data-action="cancel">
+                  <i data-lucide="x" class="h-3.5 w-3.5"></i>
+                  CANCELAR
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────────────────────────────
+               HISTÓRICO (oculto por padrão)
+          ─────────────────────────────── -->
+
+          <!-- Card 3 -->
+          <article class="appt-card appt-card--past" data-tab="historico" data-hidden="true">
+            <div class="appt-thumb">
+              <img
+                src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80"
+                alt="Penteado Social"
+                loading="lazy" decoding="async"
+              />
+              <div class="appt-thumb-overlay"></div>
+            </div>
+
+            <div class="flex flex-1 flex-col gap-0 min-w-0">
+              <div class="flex items-start justify-between gap-3 px-6 pt-6 pb-4">
+                <div class="min-w-0">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="appt-status-dot appt-status-dot--done"></span>
+                    <span class="appt-badge appt-badge--done">CONCLUÍDO</span>
+                  </div>
+                  <h3 class="title-font text-[1.15rem] leading-snug text-white/55">
+                    Penteado Social
+                  </h3>
+                  <p class="mt-1 text-[0.68rem] font-semibold tracking-[0.2em] text-gold/35">
+                    COM ISABELA CARVALHO
+                  </p>
+                </div>
+                <div class="shrink-0 mt-0.5">
+                  <span class="appt-price-pill appt-price-pill--muted">R$ 320</span>
+                </div>
+              </div>
+
+              <div class="mx-6 h-px bg-white/[0.04]"></div>
+
+              <div class="flex flex-wrap items-center gap-x-6 gap-y-3 px-6 py-4 opacity-40">
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DATA</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">10 de Abril, 2026</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="clock" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">HORÁRIO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">09:00</p>
+                  </div>
+                </div>
+
+                <div class="h-7 w-px bg-white/8 hidden sm:block"></div>
+
+                <div class="flex items-center gap-2.5">
+                  <div class="appt-icon-wrap">
+                    <i data-lucide="timer" class="h-3.5 w-3.5"></i>
+                  </div>
+                  <div>
+                    <p class="text-[0.57rem] font-semibold tracking-[0.2em] text-label">DURAÇÃO</p>
+                    <p class="mt-0.5 text-[0.85rem] font-medium text-white">90 min</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mx-6 h-px bg-white/[0.04]"></div>
+
+              <div class="flex items-center gap-3 px-6 py-4">
+                <button class="appt-btn appt-btn--reschedule"
+                  data-reagendar
+                  data-name="Penteado Social"
+                  data-price="R$ 320"
+                  data-duration="90 min">
+                  <i data-lucide="rotate-ccw" class="h-3.5 w-3.5"></i>
+                  AGENDAR NOVAMENTE
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Estado vazio -->
+        <div id="appt-empty" class="appt-empty hidden">
+          <div class="grid h-16 w-16 place-items-center rounded-full border border-white/8 bg-white/4">
+            <i data-lucide="calendar-x" class="h-7 w-7 text-label"></i>
+          </div>
+          <div>
+            <p class="title-font text-lg text-white/60">Nenhum agendamento</p>
+            <p class="mt-1 text-sm text-muted">Não há agendamentos nesta categoria.</p>
+          </div>
+          <a href="./servicos.html"
+            class="mt-3 inline-flex items-center gap-2 rounded-xl border border-gold/25 bg-gold/8
+                   px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.18em] text-gold
+                   transition hover:bg-gold/14">
+            <i data-lucide="scissors" class="h-3.5 w-3.5"></i>
+            EXPLORAR SERVIÇOS
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast -->
+    <div id="toast"
+      class="pointer-events-none fixed bottom-6 left-1/2 z-50 opacity-0"
+      style="transform: translateX(-50%) translateY(8px); transition: opacity 0.25s ease, transform 0.25s ease;">
+      <div class="flex items-center gap-2.5 rounded-2xl border border-white/10 bg-[#1e1e1e]
+                  px-5 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.6)]">
+        <i data-lucide="check-circle" class="h-4 w-4 text-gold shrink-0"></i>
+        <span id="toast-msg" class="text-sm font-medium text-white/80"></span>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/components.js"></script>
+    <script>
+      initPage();
+
+      /* ════════════════════════════════════════
+         TABS — re-query a cada troca (corrige
+         o bug da NodeList estática após cancel)
+      ════════════════════════════════════════ */
+      let activeTab = 'proximos';
+      const emptyEl = document.getElementById('appt-empty');
+      const labelEl = document.getElementById('appt-label');
+
+      function getCards(tab) {
+        return [...document.querySelectorAll(`.appt-card[data-tab="${tab}"]`)];
+      }
+
+      function updateCounters() {
+        const nProx = getCards('proximos').length;
+        const nHist = getCards('historico').length;
+        document.getElementById('count-proximos').textContent = nProx;
+        document.getElementById('count-historico').textContent = nHist;
+      }
+
+      function setTab(tab) {
+        activeTab = tab;
+
+        /* Atualiza pills */
+        document.querySelectorAll('.category-pill').forEach(p =>
+          p.classList.toggle('active', p.dataset.tab === tab)
+        );
+
+        /* Alterna visibilidade */
+        document.querySelectorAll('.appt-card').forEach(card => {
+          const match = card.dataset.tab === tab;
+          card.style.display = match ? 'flex' : 'none';
+        });
+
+        /* Atualiza label e empty state */
+        const visible = getCards(tab);
+        const count   = visible.length;
+
+        if (tab === 'proximos') {
+          labelEl.textContent = `${count} AGENDAMENTO${count !== 1 ? 'S' : ''} ATIVO${count !== 1 ? 'S' : ''}`;
+        } else {
+          labelEl.textContent = `${count} AGENDAMENTO${count !== 1 ? 'S' : ''} NO HISTÓRICO`;
+        }
+
+        emptyEl.classList.toggle('hidden', count > 0);
+      }
+
+      /* Inicializa: esconde os cards de histórico */
+      setTab('proximos');
+
+      document.querySelectorAll('.category-pill').forEach(btn => {
+        btn.addEventListener('click', () => setTab(btn.dataset.tab));
+      });
+
+      /* ════════════════════════════════════════
+         CANCELAR
+      ════════════════════════════════════════ */
+      function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = msg;
+        toast.style.opacity   = '1';
+        toast.style.transform = 'translateX(-50%) translateY(0)';
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => {
+          toast.style.opacity   = '0';
+          toast.style.transform = 'translateX(-50%) translateY(8px)';
+        }, 2800);
+      }
+
+      /* ════════════════════════════════════════
+         REAGENDAR — abre o modal de agendamento
+      ════════════════════════════════════════ */
+      document.querySelectorAll('[data-reagendar]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          window.openBooking({
+            name:     btn.dataset.name,
+            price:    btn.dataset.price,
+            duration: btn.dataset.duration,
+          });
+        });
+      });
+
+      /* ════════════════════════════════════════
+         CANCELAR
+      ════════════════════════════════════════ */
+      document.querySelectorAll('[data-action="cancel"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.appt-card');
+
+          /* Fade + slide saída */
+          card.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+          card.style.opacity    = '0';
+          card.style.transform  = 'translateX(14px)';
+
+          /* Colapsa e remove */
+          setTimeout(() => {
+            const h = card.offsetHeight;
+            card.style.overflow   = 'hidden';
+            card.style.transition = 'max-height 0.34s ease, margin-bottom 0.34s ease';
+            card.style.maxHeight  = h + 'px';
+            requestAnimationFrame(() => {
+              card.style.maxHeight    = '0';
+              card.style.marginBottom = '0';
+            });
+          }, 270);
+
+          setTimeout(() => {
+            card.remove();
+            setTab(activeTab);
+            updateCounters();
+            showToast('Agendamento cancelado com sucesso.');
+          }, 640);
+        });
+      });
+    </script>
+  </body>
+</html>
