@@ -2,7 +2,6 @@
    STUDIO ELEGANCE — Componentes compartilhados
    Injeta header, modal de login e modal de agendamento.
    Expõe: window.initPage() e window.openBooking(service)
-   Requer: window.studioApi (src/api.js carregado antes)
 ============================================================ */
 (function () {
   const LOGO = './imagem/logo.png';
@@ -34,21 +33,18 @@
           </div>
 
           <div class="modal-tabs mt-6">
-            <button class="tab-btn active" data-tab="login">ENTRAR</button>
-            <button class="tab-btn" data-tab="register">CRIAR CONTA</button>
+            <button class="tab-btn active" data-tab="login">LOGIN</button>
+            <button class="tab-btn" data-tab="register">CREATE ACCOUNT</button>
           </div>
-
-          <!-- Mensagem de erro/sucesso do modal -->
-          <div id="modal-msg" class="hidden mt-4 rounded-xl px-4 py-2.5 text-center text-xs font-medium tracking-wide"></div>
 
           <form id="tab-login" class="tab-panel mt-6" novalidate>
             <div class="modal-field">
-              <label class="modal-label">E-MAIL</label>
-              <input id="login-email" type="email" class="modal-input"
+              <label class="modal-label">EMAIL ADDRESS</label>
+              <input type="email" class="modal-input"
                 placeholder="concierge@studio-elegance.com" autocomplete="email" />
             </div>
             <div class="modal-field mt-5">
-              <label class="modal-label">SENHA</label>
+              <label class="modal-label">PASSWORD</label>
               <div class="relative">
                 <input id="login-password" type="password" class="modal-input pr-10"
                   placeholder="••••••••••" autocomplete="current-password" />
@@ -58,7 +54,7 @@
                 </button>
               </div>
             </div>
-            <button type="submit" id="login-submit" class="modal-submit mt-7">ENTRAR</button>
+            <button type="submit" class="modal-submit mt-7">SIGN IN</button>
             <p class="mt-4 text-center text-xs text-label">
               Esqueceu a senha?
               <a href="#" class="ml-1 text-gold hover:underline">Recuperar acesso</a>
@@ -68,18 +64,14 @@
           <form id="tab-register" class="tab-panel hidden mt-6" novalidate>
             <div class="modal-field">
               <label class="modal-label">NOME COMPLETO</label>
-              <input id="reg-name" type="text" class="modal-input" placeholder="Seu nome" autocomplete="name" />
+              <input type="text" class="modal-input" placeholder="Seu nome" autocomplete="name" />
             </div>
             <div class="modal-field mt-5">
-              <label class="modal-label">E-MAIL</label>
-              <input id="reg-email" type="email" class="modal-input" placeholder="seu@email.com" autocomplete="email" />
+              <label class="modal-label">EMAIL ADDRESS</label>
+              <input type="email" class="modal-input" placeholder="seu@email.com" autocomplete="email" />
             </div>
             <div class="modal-field mt-5">
-              <label class="modal-label">TELEFONE</label>
-              <input id="reg-phone" type="tel" class="modal-input" placeholder="(11) 98765-4321" maxlength="20" autocomplete="tel" inputmode="tel" required />
-            </div>
-            <div class="modal-field mt-5">
-              <label class="modal-label">SENHA</label>
+              <label class="modal-label">PASSWORD</label>
               <div class="relative">
                 <input id="reg-password" type="password" class="modal-input pr-10"
                   placeholder="••••••••••" autocomplete="new-password" />
@@ -89,73 +81,12 @@
                 </button>
               </div>
             </div>
-            <button type="submit" id="reg-submit" class="modal-submit mt-7">CRIAR CONTA</button>
+            <button type="submit" class="modal-submit mt-7">CRIAR CONTA</button>
           </form>
 
         </div>
       </div>
     `;
-  }
-
-  function formatPrimeiroNome(nome) {
-    if (!nome || typeof nome !== 'string') return '';
-    const part = nome.trim().split(/\s+/)[0];
-    if (!part) return '';
-    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
-  }
-
-  /** Texto da pílula (badge) acima do título da home */
-  const DASHBOARD_BADGE_VISITANTE = 'BEM VINDOS!';
-  const DASHBOARD_BADGE_LOGADA = 'ÁREA MEMBRO';
-
-  /** Atualiza o título da home (#dashboard-greeting) e a pílula (#dashboard-welcome-badge) */
-  function syncDashboardGreeting() {
-    const el = document.getElementById('dashboard-greeting');
-    const badge = document.getElementById('dashboard-welcome-badge');
-    const cliente =
-      typeof window.studioApi !== 'undefined' && window.studioApi.auth
-        ? window.studioApi.auth.getCliente()
-        : null;
-
-    if (badge) {
-      badge.textContent = cliente ? DASHBOARD_BADGE_LOGADA : DASHBOARD_BADGE_VISITANTE;
-    }
-
-    if (el) {
-      if (cliente && cliente.nome) {
-        const primeiro = formatPrimeiroNome(cliente.nome);
-        el.textContent = primeiro
-          ? `Que bom ter você aqui, ${primeiro}`
-          : 'Descubra sua melhor versão!';
-      } else {
-        el.textContent = 'Descubra sua melhor versão!';
-      }
-    }
-
-    syncDashboardAvatar(cliente);
-  }
-
-  /** Avatar circular da home: ícone visitante ou inicial do nome quando logada */
-  function syncDashboardAvatar(cliente) {
-    const icon = document.getElementById('dashboard-avatar-icon');
-    const initialEl = document.getElementById('dashboard-avatar-initial');
-    if (!icon || !initialEl) return;
-
-    const nome = cliente && cliente.nome ? String(cliente.nome).trim() : '';
-    const letra = nome ? nome.charAt(0).toUpperCase() : '';
-
-    if (letra) {
-      initialEl.textContent = letra;
-      icon.classList.add('hidden');
-      initialEl.classList.remove('hidden');
-    } else {
-      initialEl.textContent = '';
-      initialEl.classList.add('hidden');
-      icon.classList.remove('hidden');
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons({ nodes: [icon.closest('.avatar-ring') || icon.parentElement] });
-      }
-    }
   }
 
   /* ══════════════════════════════════════════
@@ -165,89 +96,28 @@
     const root = document.getElementById('header-root');
     if (!root) return;
     root.innerHTML = `
-      <header class="header-glow">
+      <header class="header-glow relative z-10">
         <div class="layout-shell mx-auto w-full px-4 py-5 sm:px-6 md:px-8 lg:px-10">
           <div class="flex items-center justify-between">
             <a href="./index.html" class="flex items-center">
               <img src="${LOGO}" alt="Studio Elegance"
                 class="h-[3.5em] sm:h-[4.6em] w-auto object-contain" draggable="false" />
             </a>
-            <div id="header-auth-area"></div>
+            <button
+              id="profile-btn"
+              type="button"
+              class="grid h-11 w-11 place-items-center rounded-full border-2 border-gold/90
+                     bg-transparent text-gold transition hover:bg-gold/10
+                     hover:shadow-[0_0_24px_rgba(212,175,55,0.2)]"
+              aria-label="Abrir login"
+              aria-expanded="false"
+            >
+              <i data-lucide="user" class="h-5 w-5"></i>
+            </button>
           </div>
         </div>
       </header>
     `;
-  }
-
-  function renderHeaderAuth() {
-    const area = document.getElementById('header-auth-area');
-    if (!area) return;
-
-    const cliente =
-      typeof window.studioApi !== 'undefined' && window.studioApi.auth
-        ? window.studioApi.auth.getCliente()
-        : null;
-
-    if (cliente) {
-      const inicial = cliente.nome ? cliente.nome.charAt(0).toUpperCase() : 'U';
-      area.innerHTML = `
-        <div class="relative flex items-center">
-          <button
-            id="profile-btn"
-            type="button"
-            class="grid h-11 w-11 place-items-center rounded-full border-2 border-gold/90
-                   bg-gold/10 text-gold transition hover:bg-gold/20
-                   hover:shadow-[0_0_24px_rgba(212,175,55,0.2)] title-font text-base"
-            aria-label="Menu do usuário"
-          >${inicial}</button>
-          <div id="user-menu" class="user-menu-panel hidden" role="menu" aria-label="Menu da conta">
-            <a href="./agendamentos.html" class="user-menu-item" role="menuitem">
-              <span class="user-menu-item__icon" aria-hidden="true">
-                <i data-lucide="calendar"></i>
-              </span>
-              <span>Agendamentos</span>
-            </a>
-            <div class="user-menu-sep" aria-hidden="true"></div>
-            <button type="button" id="logout-btn" class="user-menu-item user-menu-item--danger" role="menuitem">
-              <span class="user-menu-item__icon" aria-hidden="true">
-                <i data-lucide="log-out"></i>
-              </span>
-              <span>Sair</span>
-            </button>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('profile-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        document.getElementById('user-menu').classList.toggle('hidden');
-      });
-      document.addEventListener('click', () => {
-        const m = document.getElementById('user-menu');
-        if (m) m.classList.add('hidden');
-      }, { once: false });
-      document.getElementById('logout-btn').addEventListener('click', () => {
-        window.studioApi.auth.logout();
-      });
-
-    } else {
-      area.innerHTML = `
-        <button
-          id="profile-btn"
-          type="button"
-          class="grid h-11 w-11 place-items-center rounded-full border-2 border-gold/90
-                 bg-transparent text-gold transition hover:bg-gold/10
-                 hover:shadow-[0_0_24px_rgba(212,175,55,0.2)]"
-          aria-label="Abrir login"
-          aria-expanded="false"
-        >
-          <i data-lucide="user" class="h-5 w-5"></i>
-        </button>
-      `;
-    }
-
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [area] });
-    syncDashboardGreeting();
   }
 
   /* ══════════════════════════════════════════
@@ -314,9 +184,6 @@
                   <span id="bk-dt-txt"></span>
                 </div>
               </div>
-
-              <!-- Mensagem de erro inline do booking -->
-              <p id="bk-error" class="hidden text-center text-[0.72rem] text-red-400"></p>
             </div>
           </div>
 
@@ -352,43 +219,28 @@
     const bkSvcDur   = document.getElementById('bk-svc-dur');
     const bkDtRow    = document.getElementById('bk-dt-row');
     const bkDtTxt    = document.getElementById('bk-dt-txt');
-    const bkError    = document.getElementById('bk-error');
-    const bkTitle    = document.getElementById('booking-title');
 
-    const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                       'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const MONTHS_PT  = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                        'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const TIMES_LIST = ['09:00','10:30','11:00','14:00','15:30','16:30'];
 
-    const BK_CONFIRM_NOVO = 'CONFIRMAR AGENDAMENTO';
-    const BK_CONFIRM_REAG = 'CONFIRMAR REAGENDAMENTO';
-
-    let bkOpen          = false;
-    let bkService       = {};
-    let bkAgendamentoId = null;
-    let bkSelDate       = null;
-    let bkSelTime       = null;
-    let bkViewDate      = new Date();
-    let bkTimesCache    = null; // horários disponíveis vindos da API
-
-    function setBookingMode(isReschedule) {
-      if (bkTitle) bkTitle.textContent = isReschedule ? 'Reagendar Horário' : 'Escolha seu Horário';
-      bkConfirm.textContent = isReschedule ? BK_CONFIRM_REAG : BK_CONFIRM_NOVO;
-    }
+    let bkOpen     = false;
+    let bkService  = {};
+    let bkSelDate  = null;
+    let bkSelTime  = null;
+    let bkViewDate = new Date();
 
     /* ── Abrir ── */
     function openBooking(service) {
-      bkService       = service || {};
-      bkAgendamentoId = service.agendamentoId || null;
-      bkSelDate       = null;
-      bkSelTime       = null;
-      bkTimesCache    = null;
-      bkViewDate      = new Date();
+      bkService  = service || {};
+      bkSelDate  = null;
+      bkSelTime  = null;
+      bkViewDate = new Date();
       bkViewDate.setDate(1);
 
-      setBookingMode(!!bkAgendamentoId);
       renderCalendar();
-      renderTimes([]);
+      renderTimes();
       renderSummary();
-      setError('');
 
       bkOpen = true;
       bkOverlay.removeAttribute('aria-hidden');
@@ -412,22 +264,7 @@
         bkOverlay.classList.remove('overlay-leaving');
         bkOverlay.setAttribute('aria-hidden', 'true');
         bkCard.classList.remove('modal-leaving');
-        bkAgendamentoId = null;
-        setBookingMode(false);
-        bkConfirm.disabled = true;
-        bkConfirm.classList.add('opacity-40', 'cursor-not-allowed');
       }, 280);
-    }
-
-    /* ── Mensagem de erro ── */
-    function setError(msg) {
-      if (!bkError) return;
-      if (msg) {
-        bkError.textContent = msg;
-        bkError.classList.remove('hidden');
-      } else {
-        bkError.classList.add('hidden');
-      }
     }
 
     /* ── Calendário ── */
@@ -457,34 +294,17 @@
         const btn = document.createElement('button');
         btn.textContent = d;
         btn.className   = 'cal-day';
-        if (isPast)  { btn.classList.add('cal-day--past'); btn.disabled = true; }
+        if (isPast)  { btn.classList.add('cal-day--past');     btn.disabled = true; }
         if (isToday) { btn.classList.add('cal-day--today'); }
         if (isSel)   { btn.classList.add('cal-day--selected'); }
 
         if (!isPast) {
-          btn.addEventListener('click', async () => {
+          btn.addEventListener('click', () => {
             bkSelDate = date;
             bkSelTime = null;
             renderCalendar();
-            renderTimes(null); // null = carregando
+            renderTimes();
             renderSummary();
-            setError('');
-
-            // Busca horários disponíveis na API (se usuário estiver logado)
-            if (typeof window.studioApi !== 'undefined' && window.studioApi.auth.isAutenticado()) {
-              try {
-                const iso  = `${yr}-${String(mo + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                const list = await window.studioApi.agendamentos.horariosDisponiveis(iso, bkAgendamentoId);
-                bkTimesCache = list;
-                renderTimes(list);
-              } catch {
-                bkTimesCache = ['09:00','10:30','11:00','14:00','15:30','16:30'];
-                renderTimes(bkTimesCache);
-              }
-            } else {
-              bkTimesCache = ['09:00','10:30','11:00','14:00','15:30','16:30'];
-              renderTimes(bkTimesCache);
-            }
           });
         }
         bkDays.appendChild(btn);
@@ -492,23 +312,9 @@
     }
 
     /* ── Slots de horário ── */
-    function renderTimes(list) {
+    function renderTimes() {
       bkTimes.innerHTML = '';
-
-      if (list === null) {
-        // Estado de carregamento
-        for (let i = 0; i < 6; i++) {
-          const el = document.createElement('div');
-          el.className = 'time-slot time-slot--disabled animate-pulse';
-          el.textContent = '—';
-          bkTimes.appendChild(el);
-        }
-        return;
-      }
-
-      const times = list.length > 0 ? list : ['09:00','10:30','11:00','14:00','15:30','16:30'];
-
-      times.forEach(t => {
+      TIMES_LIST.forEach(t => {
         const btn = document.createElement('button');
         btn.textContent = t;
         btn.className   = 'time-slot';
@@ -521,7 +327,7 @@
         btn.addEventListener('click', () => {
           if (!bkSelDate) return;
           bkSelTime = t;
-          renderTimes(bkTimesCache || times);
+          renderTimes();
           renderSummary();
         });
         bkTimes.appendChild(btn);
@@ -560,47 +366,17 @@
     });
 
     /* ── Confirmar ── */
-    bkConfirm.addEventListener('click', async () => {
+    bkConfirm.addEventListener('click', () => {
       if (!bkSelDate || !bkSelTime || bkConfirm.disabled) return;
-      setError('');
-
-      // Verifica autenticação
-      if (typeof window.studioApi === 'undefined' || !window.studioApi.auth.isAutenticado()) {
-        closeBooking();
-        setTimeout(() => window.__studioEleganceUi?.openLogin(), 320);
-        return;
-      }
-
-      // Monta o ISO datetime
-      const [horas, mins] = bkSelTime.split(':').map(Number);
-      const dt = new Date(bkSelDate);
-      dt.setHours(horas, mins, 0, 0);
-
-      const isReschedule = !!bkAgendamentoId;
-      bkConfirm.textContent = isReschedule ? 'REAGENDANDO…' : 'AGENDANDO…';
+      bkConfirm.textContent = 'AGENDAMENTO CONFIRMADO ✓';
       bkConfirm.disabled    = true;
-
-      try {
-        if (isReschedule) {
-          await window.studioApi.agendamentos.reagendar(bkAgendamentoId, dt.toISOString());
-          bkConfirm.textContent = 'REAGENDADO COM SUCESSO ✓';
-        } else {
-          await window.studioApi.agendamentos.criar(bkService.id, dt.toISOString());
-          bkConfirm.textContent = 'AGENDAMENTO CONFIRMADO ✓';
-        }
+      setTimeout(() => {
+        closeBooking();
         setTimeout(() => {
-          closeBooking();
-          // Se estiver na página de agendamentos, recarrega os dados
-          if (typeof window.carregarAgendamentos === 'function') {
-            window.carregarAgendamentos();
-          }
-        }, 1400);
-      } catch (err) {
-        bkConfirm.textContent = isReschedule ? BK_CONFIRM_REAG : BK_CONFIRM_NOVO;
-        bkConfirm.disabled    = false;
-        bkConfirm.classList.remove('opacity-40', 'cursor-not-allowed');
-        setError(err.message || 'Não foi possível confirmar. Tente novamente.');
-      }
+          bkConfirm.textContent = 'CONFIRMAR AGENDAMENTO';
+          bkConfirm.classList.add('opacity-40', 'cursor-not-allowed');
+        }, 300);
+      }, 1400);
     });
 
     /* ── Fechar ── */
@@ -609,6 +385,7 @@
     bkOverlay.addEventListener('click', e => { if (e.target === bkOverlay) closeBooking(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && bkOpen) closeBooking(); });
 
+    /* Expõe como API global */
     window.openBooking = openBooking;
   }
 
@@ -618,7 +395,9 @@
   function initLoginBehavior() {
     const overlay    = document.getElementById('modal-overlay');
     const modal      = document.getElementById('login-modal');
-    if (!overlay) return;
+    const profileBtn = document.getElementById('profile-btn');
+    const closeBtn   = document.getElementById('modal-close-btn');
+    if (!overlay || !profileBtn) return;
 
     let isOpen = false;
 
@@ -629,9 +408,8 @@
       overlay.classList.add('is-open', 'overlay-entering');
       modal.classList.remove('modal-leaving');
       modal.classList.add('modal-entering');
+      profileBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-      const profileBtn = document.getElementById('profile-btn');
-      if (profileBtn) profileBtn.setAttribute('aria-expanded', 'true');
     }
 
     function closeModal() {
@@ -641,48 +419,19 @@
       modal.classList.add('modal-leaving');
       overlay.classList.remove('overlay-entering', 'is-open');
       overlay.classList.add('overlay-leaving');
+      profileBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
-      const profileBtn = document.getElementById('profile-btn');
-      if (profileBtn) profileBtn.setAttribute('aria-expanded', 'false');
       setTimeout(() => {
         overlay.classList.remove('overlay-leaving');
         overlay.setAttribute('aria-hidden', 'true');
         modal.classList.remove('modal-leaving');
-        setModalMsg('', '');
       }, 280);
     }
 
-    function setModalMsg(msg, tipo) {
-      const el = document.getElementById('modal-msg');
-      if (!el) return;
-      if (!msg) { el.classList.add('hidden'); el.textContent = ''; return; }
-      el.textContent = msg;
-      el.classList.remove('hidden', 'text-red-400', 'text-green-400', 'bg-red-500/10', 'bg-green-500/10');
-      if (tipo === 'erro') {
-        el.classList.add('text-red-400', 'bg-red-500/10');
-      } else {
-        el.classList.add('text-green-400', 'bg-green-500/10');
-      }
-    }
-
-    function setSubmitLoading(btnId, loading, defaultText) {
-      const btn = document.getElementById(btnId);
-      if (!btn) return;
-      btn.disabled = loading;
-      btn.textContent = loading ? 'AGUARDE…' : defaultText;
-    }
-
-    // Abre o modal ao clicar no botão do header (somente quando não logado)
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('#profile-btn');
-      if (!btn) return;
-      if (typeof window.studioApi !== 'undefined' && window.studioApi.auth.isAutenticado()) return;
-      isOpen ? closeModal() : openModal();
-    });
-
-    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    profileBtn.addEventListener('click', () => isOpen ? closeModal() : openModal());
+    closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !window._bkOpen) closeModal(); });
 
     /* Tabs login / cadastro */
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -691,7 +440,6 @@
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
         btn.classList.add('active');
         document.getElementById('tab-' + btn.dataset.tab).classList.remove('hidden');
-        setModalMsg('', '');
       });
     });
 
@@ -718,133 +466,6 @@
              </svg>`;
       });
     });
-
-    /* Submit — Login */
-    document.getElementById('tab-login').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (typeof window.studioApi === 'undefined') return;
-      const email = document.getElementById('login-email').value.trim();
-      const senha = document.getElementById('login-password').value;
-      if (!email || !senha) { setModalMsg('Preencha e-mail e senha.', 'erro'); return; }
-      setSubmitLoading('login-submit', true, 'ENTRAR');
-      setModalMsg('', '');
-      try {
-        await window.studioApi.auth.login(email, senha);
-        setModalMsg('Login realizado com sucesso!', 'ok');
-        setTimeout(() => {
-          closeModal();
-          renderHeaderAuth();
-          if (typeof window.syncDashboardAgendadosGate === 'function') window.syncDashboardAgendadosGate();
-        }, 800);
-      } catch (err) {
-        setModalMsg(err.message, 'erro');
-      } finally {
-        setSubmitLoading('login-submit', false, 'ENTRAR');
-      }
-    });
-
-    /* Submit — Cadastro */
-    document.getElementById('tab-register').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (typeof window.studioApi === 'undefined') return;
-      const nome = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const telefone = document.getElementById('reg-phone').value.trim();
-      const senha = document.getElementById('reg-password').value;
-      if (!nome || !email || !senha || !telefone) {
-        setModalMsg('Preencha nome, e-mail, telefone e senha.', 'erro');
-        return;
-      }
-      if (senha.length < 8) { setModalMsg('A senha deve ter ao menos 8 caracteres.', 'erro'); return; }
-      setSubmitLoading('reg-submit', true, 'CRIAR CONTA');
-      setModalMsg('', '');
-      try {
-        await window.studioApi.auth.registrar(nome, email, senha, telefone);
-        setModalMsg('Conta criada com sucesso!', 'ok');
-        setTimeout(() => {
-          closeModal();
-          renderHeaderAuth();
-          if (typeof window.syncDashboardAgendadosGate === 'function') window.syncDashboardAgendadosGate();
-        }, 800);
-      } catch (err) {
-        setModalMsg(err.message, 'erro');
-      } finally {
-        setSubmitLoading('reg-submit', false, 'CRIAR CONTA');
-      }
-    });
-
-    window.__studioEleganceUi = { openLogin: openModal, closeLogin: closeModal };
-  }
-
-  /**
-   * Home (index): tile "Agendados" sem sessão não navega (href #, captura de clique,
-   * bloqueio de clique do meio); abre login. Com sessão, link normal para agendamentos.
-   */
-  function initDashboardAgendadosGate() {
-    const tile = document.getElementById('dashboard-tile-agendados');
-    if (!tile) return;
-
-    const DEST = './agendamentos.html';
-    const badge = document.getElementById('dashboard-agendados-lock-badge');
-    const hint = document.getElementById('dashboard-agendados-login-hint');
-
-    function isAuthed() {
-      return typeof window.studioApi !== 'undefined'
-        && window.studioApi.auth
-        && window.studioApi.auth.isAutenticado();
-    }
-
-    function syncDashboardAgendadosGate() {
-      if (isAuthed()) {
-        tile.setAttribute('href', DEST);
-        tile.classList.remove('nav-tile--locked');
-        tile.removeAttribute('aria-disabled');
-        tile.removeAttribute('aria-describedby');
-        tile.removeAttribute('data-locked');
-        if (badge) {
-          badge.setAttribute('hidden', '');
-          badge.classList.add('opacity-0');
-        }
-        if (hint) hint.setAttribute('hidden', '');
-      } else {
-        tile.setAttribute('href', '#');
-        tile.classList.add('nav-tile--locked');
-        tile.setAttribute('aria-disabled', 'true');
-        tile.setAttribute('data-locked', '1');
-        if (hint) {
-          hint.removeAttribute('hidden');
-          tile.setAttribute('aria-describedby', 'dashboard-agendados-login-hint');
-        }
-        if (badge) {
-          badge.removeAttribute('hidden');
-          badge.classList.remove('opacity-0');
-        }
-      }
-      if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [tile] });
-    }
-
-    tile.addEventListener('click', (e) => {
-      if (isAuthed()) return;
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      window.__studioEleganceUi?.openLogin();
-    }, true);
-
-    tile.addEventListener('auxclick', (e) => {
-      if (isAuthed()) return;
-      if (e.button === 1) e.preventDefault();
-    }, true);
-
-    tile.addEventListener('keydown', (e) => {
-      if (isAuthed()) return;
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        window.__studioEleganceUi?.openLogin();
-      }
-    });
-
-    window.syncDashboardAgendadosGate = syncDashboardAgendadosGate;
-    syncDashboardAgendadosGate();
   }
 
   /* ══════════════════════════════════════════
@@ -855,9 +476,7 @@
     injectHeader();
     injectBookingModal();
     if (typeof lucide !== 'undefined') lucide.createIcons();
-    renderHeaderAuth();
     initLoginBehavior();
-    initDashboardAgendadosGate();
     initBookingBehavior();
   };
 })();

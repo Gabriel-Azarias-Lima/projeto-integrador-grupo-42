@@ -15,10 +15,9 @@
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_1100px_560px_at_50%_-8%,rgba(212,175,55,0.06),transparent_58%)]"></div>
     </div>
 
-    <!-- Injetado por components.js (api.js antes — necessário para o botão de login no header) -->
+    <!-- Injetado por components.js -->
     <div id="modal-root"></div>
     <div id="header-root"></div>
-    <div id="booking-root"></div>
 
     <!-- ============================================================
          MAIN
@@ -46,8 +45,7 @@
             <!-- Avatar -->
             <div class="relative w-fit shrink-0 self-start sm:self-auto">
               <div class="avatar-ring grid h-[4.75rem] w-[4.75rem] place-items-center overflow-hidden rounded-full bg-gradient-to-br from-amber-500 to-amber-900 sm:h-[5.5rem] sm:w-[5.5rem]">
-                <i id="dashboard-avatar-icon" data-lucide="user" class="h-8 w-8 text-white/90 sm:h-9 sm:w-9" aria-hidden="true"></i>
-                <span id="dashboard-avatar-initial" class="hidden title-font text-[1.85rem] leading-none tracking-[0.02em] text-white/95 sm:text-[2.2rem]" aria-hidden="true"></span>
+                <i data-lucide="user" class="h-8 w-8 text-white/90 sm:h-9 sm:w-9"></i>
               </div>
               <span class="absolute -bottom-0.5 -right-0.5 grid h-6 w-6 place-items-center rounded-full border-2 border-[#171616] bg-gold text-black">
                 <i data-lucide="check" class="h-3.5 w-3.5"></i>
@@ -57,11 +55,11 @@
             <!-- Text -->
             <div class="min-w-0 flex-1">
               <span class="inline-flex items-center gap-1.5 rounded-full border border-gold/25 bg-gold/8 px-2.5 py-0.5 text-[0.6rem] font-semibold tracking-[0.22em] text-gold/80">
-                <span class="h-1 w-1 shrink-0 rounded-full bg-gold/70" aria-hidden="true"></span>
-                <span id="dashboard-welcome-badge">BEM VINDOS! </span>
+                <span class="h-1 w-1 rounded-full bg-gold/70"></span>
+                BEM VINDA!
               </span>
-              <h1 id="dashboard-greeting" class="title-font mt-2 text-[1.7rem] leading-tight tracking-[0.015em] text-white sm:text-[2.2rem] sm:leading-[1.15]">
-                Descubra sua melhor versão
+              <h1 class="title-font mt-2 text-[1.7rem] leading-tight tracking-[0.015em] text-white sm:text-[2.2rem] sm:leading-[1.15]">
+                Olá, Seja bem-vinda!
               </h1>
               <p class="mt-1.5 text-sm leading-relaxed text-muted sm:text-[0.93rem]">
                 Pronto para sua dose diária de autocuidado e elegância?
@@ -99,33 +97,14 @@
                 </div>
               </a>
 
-              <!-- Agendados (acesso controlado por components.js + studioApi) -->
-              <a
-                id="dashboard-tile-agendados"
-                href="./agendamentos.html"
-                class="nav-tile group relative flex min-h-[11rem] flex-col justify-between px-6 py-5 sm:min-h-[11.5rem]"
-              >
-                <span
-                  id="dashboard-agendados-lock-badge"
-                  class="pointer-events-none absolute right-4 top-4 grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-black/50 text-gold/90 opacity-0 shadow-sm transition-opacity duration-200"
-                  hidden
-                  aria-hidden="true"
-                >
-                  <i data-lucide="lock" class="h-3.5 w-3.5"></i>
-                </span>
+              <!-- Agendados -->
+              <a href="./agendamentos.html" class="nav-tile group flex min-h-[11rem] flex-col justify-between px-6 py-5 sm:min-h-[11.5rem]">
                 <div class="nav-icon-circle nav-icon-circle--muted">
                   <i data-lucide="calendar" class="h-5 w-5"></i>
                 </div>
                 <div>
                   <p class="text-[0.68rem] font-semibold tracking-[0.18em] text-gold">Agendados</p>
                   <p class="mt-0.5 text-[0.62rem] text-white/30">Seus agendamentos</p>
-                  <p
-                    id="dashboard-agendados-login-hint"
-                    class="nav-tile-login-hint mt-2 text-[0.58rem] font-medium tracking-[0.14em] text-gold/55"
-                    hidden
-                  >
-                    Faça login para acessar
-                  </p>
                 </div>
               </a>
             </div>
@@ -185,7 +164,6 @@
     </main>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="./src/api.js"></script>
     <script src="./src/components.js"></script>
     <script>initPage();</script>
   </body>
