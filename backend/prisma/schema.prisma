@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model clientes {
+  id           Int            @id @default(autoincrement())
+  nome         String         @db.VarChar(150)
+  email        String         @unique @db.VarChar(180)
+  senha        String
+  telefone     String?        @db.VarChar(20)
+  criado_em    DateTime       @default(now()) @db.Timestamptz()
+  agendamentos agendamentos[]
+}
+
+model servicos {
+  id               Int            @id @default(autoincrement())
+  categoria        String         @db.VarChar(50)
+  nome             String         @db.VarChar(150)
+  descricao        String?
+  preco            Decimal        @db.Decimal(10, 2)
+  duracao_minutos  Int
+  imagem_url       String?
+  ativo            Boolean        @default(true)
+  agendamentos     agendamentos[]
+}
+
+model agendamentos {
+  id               Int      @id @default(autoincrement())
+  fk_id_cliente    Int
+  fk_id_servico    Int
+  data_hora_inicio DateTime @db.Timestamptz()
+  // status válidos: pendente | confirmado | cancelado | concluido
+  status           String   @default("pendente") @db.VarChar(30)
+  criado_em        DateTime @default(now()) @db.Timestamptz()
+
+  cliente          clientes @relation(fields: [fk_id_cliente], references: [id], onDelete: Cascade)
+  servico          servicos @relation(fields: [fk_id_servico], references: [id], onDelete: Restrict)
+
+  @@index([fk_id_cliente])
+  @@index([data_hora_inicio])
+}
