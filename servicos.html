@@ -59,344 +59,68 @@
 
         <!-- Contador -->
         <p class="mt-5 text-[0.7rem] tracking-[0.18em] text-label">
-          <span id="services-count">6</span> SERVIÇOS DISPONÍVEIS
+          <span id="services-count">—</span> SERVIÇOS DISPONÍVEIS
         </p>
       </section>
 
       <!-- ── Grid de cards ── -->
       <section class="mt-6 sm:mt-8">
-        <div id="services-grid"
-          class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div id="services-grid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-          <!-- ═══════════════════════
-               CABELO
-          ═══════════════════════ -->
-
-          <!-- 1. Penteado Social -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
-                alt="Penteado Social"
-                loading="lazy" decoding="async"
-              />
-            </div>
+          <!-- Skeletons de carregamento -->
+          <div class="service-card skeleton-card" id="skel-1">
+            <div class="service-card-photo bg-white/5 animate-pulse"></div>
             <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Penteado Social</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 320</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Criações exclusivas para eventos, do minimalismo moderno ao clássico sofisticado.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">90 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
+              <div class="h-4 w-3/4 rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-full rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-2/3 rounded-lg bg-white/5 animate-pulse"></div>
             </div>
-          </article>
-
-          <!-- 2. Escova Modeladora -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80"
-                alt="Escova Modeladora"
-                loading="lazy" decoding="async"
-              />
-            </div>
+          </div>
+          <div class="service-card skeleton-card" id="skel-2">
+            <div class="service-card-photo bg-white/5 animate-pulse"></div>
             <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Escova Modeladora</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 180</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Fios lisos e brilhosos com movimentação natural e durabilidade prolongada.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">60 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
+              <div class="h-4 w-3/4 rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-full rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-2/3 rounded-lg bg-white/5 animate-pulse"></div>
             </div>
-          </article>
-
-          <!-- 3. Coloração Premium -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80"
-                alt="Coloração Premium"
-                loading="lazy" decoding="async"
-              />
-            </div>
+          </div>
+          <div class="service-card skeleton-card" id="skel-3">
+            <div class="service-card-photo bg-white/5 animate-pulse"></div>
             <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Coloração Premium</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 480</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Técnicas de coloração personalizadas com produtos importados para realçar sua beleza única.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">3 h</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
+              <div class="h-4 w-3/4 rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-full rounded-lg bg-white/5 animate-pulse"></div>
+              <div class="h-3 w-2/3 rounded-lg bg-white/5 animate-pulse"></div>
             </div>
-          </article>
+          </div>
 
-          <!-- 4. Mechas Iluminadas -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1519699697-4bcaa0d15cf1?auto=format&fit=crop&w=600&q=80"
-                alt="Mechas Iluminadas"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Mechas Iluminadas</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 550</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Iluminação natural com efeito dimensional que suaviza e valoriza a cor original.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">3 h 30</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
+        </div>
 
-          <!-- 5. Corte Feminino -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80"
-                alt="Corte Feminino"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Corte Feminino</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 160</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Cortes estratégicos pensados para realçar o formato do seu rosto com precisão.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">45 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- 6. Tratamento Capilar -->
-          <article class="service-card" data-category="cabelo">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1582095133179-bfd08e2fb6b8?auto=format&fit=crop&w=600&q=80"
-                alt="Tratamento Capilar"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Tratamento Capilar</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 280</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Protocolos de hidratação e reconstrução para cabelos ressecados e fios porosos.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">60 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- ═══════════════════════
-               UNHAS
-          ═══════════════════════ -->
-
-          <!-- 7. Manicure Clássica -->
-          <article class="service-card" data-category="unhas" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80"
-                alt="Manicure Clássica"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Manicure Clássica</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 80</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Cuidado e esmaltação impecável com produtos premium e acabamento refinado.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">45 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- 8. Nail Art Premium -->
-          <article class="service-card" data-category="unhas" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1604655855765-d2a5e8c1f5b3?auto=format&fit=crop&w=600&q=80"
-                alt="Nail Art Premium"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Nail Art Premium</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 180</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Arte exclusiva em cada detalhe com materiais importados e designs únicos sob medida.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">90 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- 9. Pedicure Relaxante -->
-          <article class="service-card" data-category="unhas" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=600&q=80"
-                alt="Pedicure Relaxante"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Pedicure Relaxante</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 120</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Cuidado completo dos pés com banho hidratante, esfoliação e massagem final.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">60 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- ═══════════════════════
-               ESTÉTICA
-          ═══════════════════════ -->
-
-          <!-- 10. Limpeza de Pele -->
-          <article class="service-card" data-category="estetica" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=600&q=80"
-                alt="Limpeza de Pele"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Limpeza de Pele</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 220</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Limpeza profunda com extração cuidadosa e finalização calmante com ativos naturais.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">60 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- 11. Massagem Relaxante -->
-          <article class="service-card" data-category="estetica" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80"
-                alt="Massagem Relaxante"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Massagem Relaxante</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 300</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Técnicas tailandesas e suecas para alívio total da tensão muscular e bem-estar profundo.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">60 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
-          <!-- 12. Design de Sobrancelhas -->
-          <article class="service-card" data-category="estetica" style="display:none">
-            <div class="service-card-photo">
-              <img
-                src="https://images.unsplash.com/photo-1560066984-138daaa891a6?auto=format&fit=crop&w=600&q=80"
-                alt="Design de Sobrancelhas"
-                loading="lazy" decoding="async"
-              />
-            </div>
-            <div class="flex flex-col gap-3 p-5">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="title-font text-[1.05rem] leading-snug text-white">Design de Sobrancelhas</h3>
-                <span class="shrink-0 text-sm font-semibold text-gold">R$ 90</span>
-              </div>
-              <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
-                Modelagem estratégica que enquadra e realça o olhar de forma natural e harmoniosa.
-              </p>
-              <div class="flex items-center gap-1.5 text-label">
-                <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
-                <span class="text-[0.72rem]">30 min</span>
-              </div>
-              <button class="service-btn mt-1">AGENDAR AGORA</button>
-            </div>
-          </article>
-
+        <!-- Estado vazio / erro -->
+        <div id="services-empty" class="hidden mt-16 flex flex-col items-center gap-4 text-center">
+          <div class="grid h-16 w-16 place-items-center rounded-full border border-white/8 bg-white/4">
+            <i data-lucide="scissors" class="h-7 w-7 text-label"></i>
+          </div>
+          <p id="services-empty-msg" class="text-sm text-muted">Nenhum serviço encontrado.</p>
         </div>
       </section>
 
     </main>
 
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./src/api.js"></script>
     <script src="./src/components.js"></script>
     <script>
       initPage();
 
-      /* ════════════════════════════════════════
-         FILTRO DE CATEGORIAS
-      ════════════════════════════════════════ */
+      /* ── Estado global dos serviços ── */
+      let todosServicos = [];
+      let categoriaAtiva = 'cabelo';
+
       const grid       = document.getElementById('services-grid');
       const countEl    = document.getElementById('services-count');
       const prefixEl   = document.getElementById('title-prefix');
       const categoryEl = document.getElementById('title-category');
+      const emptyEl    = document.getElementById('services-empty');
 
       const TITLES = {
         cabelo:   ['Serviços de ', 'Cabelo'],
@@ -405,42 +129,126 @@
         todos:    ['Todos os ',    'Serviços'],
       };
 
-      function setCategory(cat) {
+      /* ── Formata duração em minutos → string legível ── */
+      function formatarDuracao(min) {
+        if (min < 60) return `${min} min`;
+        const h = Math.floor(min / 60);
+        const m = min % 60;
+        return m === 0 ? `${h} h` : `${h} h ${m} min`;
+      }
+
+      /* ── Formata preço Decimal → "R$ X,XX" ── */
+      function formatarPreco(preco) {
+        return Number(preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      }
+
+      /* ── Cria HTML de um card de serviço ── */
+      function criarCardServico(s) {
+        const article = document.createElement('article');
+        article.className    = 'service-card';
+        article.dataset.category = s.categoria;
+
+        const imgSrc = s.imagem_url ||
+          'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80';
+
+        const preco    = formatarPreco(s.preco);
+        const duracao  = formatarDuracao(s.duracao_minutos);
+
+        article.innerHTML = `
+          <div class="service-card-photo">
+            <img src="${imgSrc}" alt="${s.nome}" loading="lazy" decoding="async" />
+          </div>
+          <div class="flex flex-col gap-3 p-5">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="title-font text-[1.05rem] leading-snug text-white">${s.nome}</h3>
+              <span class="shrink-0 text-sm font-semibold text-gold">${preco}</span>
+            </div>
+            <p class="flex-1 text-[0.8rem] leading-relaxed text-muted line-clamp-3">
+              ${s.descricao || ''}
+            </p>
+            <div class="flex items-center gap-1.5 text-label">
+              <i data-lucide="clock" class="h-3.5 w-3.5 shrink-0"></i>
+              <span class="text-[0.72rem]">${duracao}</span>
+            </div>
+            <button class="service-btn mt-1">AGENDAR AGORA</button>
+          </div>
+        `;
+
+        article.querySelector('.service-btn').addEventListener('click', () => {
+          window.openBooking({
+            id:       s.id,
+            name:     s.nome,
+            price:    preco,
+            duration: duracao,
+          });
+        });
+
+        return article;
+      }
+
+      /* ── Renderiza o grid com base na categoria ativa ── */
+      function renderServicos(cat) {
+        categoriaAtiva = cat;
+        const filtrados = cat === 'todos'
+          ? todosServicos
+          : todosServicos.filter(s => s.categoria === cat);
+
+        grid.style.transition = 'opacity 0.18s ease';
+        grid.style.opacity    = '0';
+
+        setTimeout(() => {
+          // Remove cards antigos (mantém skeletons ocultos se ainda houver)
+          grid.querySelectorAll('.service-card:not(.skeleton-card)').forEach(el => el.remove());
+
+          filtrados.forEach(s => grid.appendChild(criarCardServico(s)));
+
+          countEl.textContent = filtrados.length;
+
+          const [prefix, label] = TITLES[cat] || TITLES.cabelo;
+          prefixEl.textContent   = prefix;
+          categoryEl.textContent = label;
+
+          emptyEl.classList.toggle('hidden', filtrados.length > 0);
+          grid.style.opacity = '1';
+
+          if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [grid] });
+        }, 180);
+
         document.querySelectorAll('.category-pill').forEach(p =>
           p.classList.toggle('active', p.dataset.category === cat)
         );
-        grid.style.transition = 'opacity 0.18s ease';
-        grid.style.opacity    = '0';
-        setTimeout(() => {
-          const cards = document.querySelectorAll('.service-card');
-          cards.forEach(card => {
-            const show = cat === 'todos' || card.dataset.category === cat;
-            card.style.display = show ? 'flex' : 'none';
-          });
-          const visible = [...cards].filter(c => c.style.display !== 'none').length;
-          if (countEl) countEl.textContent = visible;
-          const [prefix, label] = TITLES[cat] || TITLES.cabelo;
-          if (prefixEl)   prefixEl.textContent   = prefix;
-          if (categoryEl) categoryEl.textContent = label;
-          grid.style.opacity = '1';
-        }, 180);
       }
 
-      document.querySelectorAll('.category-pill').forEach(btn => {
-        btn.addEventListener('click', () => setCategory(btn.dataset.category));
-      });
+      /* ── Remove os skeletons de carregamento ── */
+      function removerSkeletons() {
+        grid.querySelectorAll('.skeleton-card').forEach(el => el.remove());
+      }
 
-      /* ── Dispara ao clicar em "AGENDAR AGORA" ── */
-      document.querySelectorAll('.service-btn').forEach(btn => {
+      /* ── Carrega serviços da API ── */
+      async function carregarServicos() {
+        try {
+          const lista = await window.studioApi.servicos.listar();
+          todosServicos = lista;
+          removerSkeletons();
+          renderServicos('cabelo');
+        } catch (err) {
+          removerSkeletons();
+          emptyEl.classList.remove('hidden');
+          document.getElementById('services-empty-msg').textContent =
+            'Não foi possível carregar os serviços. Verifique se o servidor está rodando.';
+          countEl.textContent = '0';
+          console.error('[Studio Elegance] Erro ao carregar serviços:', err.message);
+        }
+      }
+
+      /* ── Filtro por categorias ── */
+      document.querySelectorAll('.category-pill').forEach(btn => {
         btn.addEventListener('click', () => {
-          const article  = btn.closest('article');
-          const name     = article.querySelector('h3').textContent.trim();
-          const price    = article.querySelector('.flex.items-start.justify-between .text-gold').textContent.trim();
-          const durEl    = article.querySelector('[data-lucide="clock"]');
-          const duration = durEl ? durEl.nextElementSibling.textContent.trim() : '';
-          window.openBooking({ name, price, duration });
+          if (todosServicos.length > 0) renderServicos(btn.dataset.category);
         });
       });
+
+      carregarServicos();
     </script>
   </body>
 </html>
